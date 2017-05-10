@@ -24,9 +24,12 @@ class shibboleth (
   $sp_cert            = $::shibboleth::params::sp_cert,
   $bin_dir            = $::shibboleth::params::bin_dir,
   $handlerSSL         = true,
-  $consistent_address = true
+  $consistent_address = true,
+  $manage_repo        = false
 ) inherits shibboleth::params {
 
+  include shibboleth::repo
+  
   $config_file = "${conf_dir}/${conf_file}"
 
   user{$user:

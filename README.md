@@ -152,6 +152,7 @@ The `shibboleth` module provides the following classes and resource definitions:
 * `sp_cert`    Sets the name of the Shibboleth Service Provider back end certificate, defaults to `sp-cert.pem`
 * `bin_dir`    Sets the location of the Shibboleth tools (esp. shib-keygen), defaults to  `/usr/sbin`
 * `handlerSSL`      Sets the `handlerSSL` attribute in to `true` or `false`, defaults to `true`
+* `manage_repo`   Sets whether to manage rpm repo definition for RHEL derivatives or Suse derivatives.  Suse is untested. 
 
 ## Resource: `shibboleth::attribute_map`
 
