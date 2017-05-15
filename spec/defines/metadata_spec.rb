@@ -47,6 +47,7 @@ describe 'shibboleth::metadata', :type => :define do
           'set MetadataProvider/#attribute/type XML',
           'set MetadataProvider/#attribute/uri http://example.org/provider',
           'set MetadataProvider/#attribute/backingFilePath /etc/shibboleth/provider',
+          'set MetadataProvider/#attribute/legacyOrgNames true',
           'set MetadataProvider/#attribute/reloadInterval 7200',
           'set MetadataProvider/MetadataFilter[1]/#attribute/type RequireValidUntil',
           'set MetadataProvider/MetadataFilter[1]/#attribute/maxValidityInterval 2419200',
@@ -66,6 +67,7 @@ describe 'shibboleth::metadata', :type => :define do
         :cert_dir                 => '/path/to/certs',
         :cert_file_name           => 'bobs_cert.crt',
         :provider_type            => 'JSON',
+        :legacy_org_names         => false,
         :provider_reload_interval => '1000',
         :metadata_filter_max_validity_interval  => '100000'
       } }
@@ -80,6 +82,7 @@ describe 'shibboleth::metadata', :type => :define do
           'set MetadataProvider/#attribute/type JSON',
           'set MetadataProvider/#attribute/uri http://example.org/provider',
           'set MetadataProvider/#attribute/backingFilePath /path/to/bob.xml',
+          'set MetadataProvider/#attribute/legacyOrgNames false',
           'set MetadataProvider/#attribute/reloadInterval 1000',
           'set MetadataProvider/MetadataFilter[1]/#attribute/type RequireValidUntil',
           'set MetadataProvider/MetadataFilter[1]/#attribute/maxValidityInterval 100000',
@@ -133,6 +136,7 @@ describe 'shibboleth::metadata', :type => :define do
           'set MetadataProvider/#attribute/type XML',
           'set MetadataProvider/#attribute/uri http://example.org/provider',
           'set MetadataProvider/#attribute/backingFilePath /etc/shibboleth/provider',
+          'set MetadataProvider/#attribute/legacyOrgNames true',
           'set MetadataProvider/#attribute/reloadInterval 7200',
           'set MetadataProvider/MetadataFilter[1]/#attribute/type RequireValidUntil',
           'set MetadataProvider/MetadataFilter[1]/#attribute/maxValidityInterval 2419200',
@@ -152,6 +156,7 @@ describe 'shibboleth::metadata', :type => :define do
         :cert_dir                 => '/path/to/certs',
         :cert_file_name           => 'bobs_cert.crt',
         :provider_type            => 'JSON',
+        :legacy_org_names         => false
         :provider_reload_interval => '1000',
         :metadata_filter_max_validity_interval  => '100000'
       } }
@@ -166,6 +171,7 @@ describe 'shibboleth::metadata', :type => :define do
           'set MetadataProvider/#attribute/type JSON',
           'set MetadataProvider/#attribute/uri http://example.org/provider',
           'set MetadataProvider/#attribute/backingFilePath /path/to/bob.xml',
+          'set MetadataProvider/#attribute/legacyOrgNames false',
           'set MetadataProvider/#attribute/reloadInterval 1000',
           'set MetadataProvider/MetadataFilter[1]/#attribute/type RequireValidUntil',
           'set MetadataProvider/MetadataFilter[1]/#attribute/maxValidityInterval 100000',
