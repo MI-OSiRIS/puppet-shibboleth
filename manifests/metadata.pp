@@ -8,6 +8,7 @@ define shibboleth::metadata(
   $cert_dir                 = $::shibboleth::conf_dir,
   $cert_file_name           = inline_template("<%= @cert_uri.split('/').last  %>"),
   $provider_type            = 'XML',
+  $legacy_org_names         = true,
   $provider_reload_interval = '7200',
   $metadata_filter_max_validity_interval  = '2419200'
 ){
@@ -45,6 +46,7 @@ define shibboleth::metadata(
       "set MetadataProvider/#attribute/type ${provider_type}",
       "set MetadataProvider/#attribute/uri ${provider_uri}",
       "set MetadataProvider/#attribute/backingFilePath ${backing_file}",
+      "set MetadataProvider/#attribute/legacyOrgNames ${legacy_org_names}",
       "set MetadataProvider/#attribute/reloadInterval ${provider_reload_interval}",
       'set MetadataProvider/MetadataFilter[1]/#attribute/type RequireValidUntil',
       "set MetadataProvider/MetadataFilter[1]/#attribute/maxValidityInterval ${metadata_filter_max_validity_interval}",
