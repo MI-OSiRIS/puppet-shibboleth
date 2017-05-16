@@ -15,6 +15,7 @@
 class shibboleth (
   $admin              = $::shibboleth::params::admin,
   $hostname           = $::shibboleth::params::hostname,
+  $manage_user        = $::shibboleth::params::manage_user,
   $user               = $::shibboleth::params::user,
   $group              = $::shibboleth::params::group,
   $logo_location      = $::shibboleth::params::logo_location,
@@ -32,11 +33,14 @@ class shibboleth (
   
   $config_file = "${conf_dir}/${conf_file}"
 
-  user{$user:
-    ensure  => 'present',
-    home    => '/var/log/shibboleth',
-    shell   => '/bin/false',
-    require => Class['apache::mod::shib'],
+  if $manage_user {
+    user{$user:
+      ensure  => 'present',
+      home    => '/var/log/shibboleth',
+      shell   => '/bin/false',
+      require => Class['apache::mod::shib'],
+      before => Service['shibd']
+    }
   }
 
   # by requiring the apache::mod::shib, these should wait for the package
@@ -106,7 +110,7 @@ class shibboleth (
     enable     => true,
     hasrestart => true,
     hasstatus  => true,
-    require    => [Class['apache::mod::shib'],User[$user]],
+    require    => Class['apache::mod::shib'],
   }
 
 }
