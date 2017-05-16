@@ -23,6 +23,7 @@ class shibboleth::params {
   $sp_cert            = 'sp-cert.pem'
   $bin_dir            = '/usr/sbin'
   $discovery_protocol = 'SAMLDS'
+  $manage_user        = false     # Shibboleth packages will generally create this user so default to not managing
 
   case $::osfamily {
     'Debian':{
