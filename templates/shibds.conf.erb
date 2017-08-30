@@ -1,0 +1,17 @@
+# Managed by Puppet
+# Basic Apache configuration for discovery service at /ds
+<IfModule mod_alias.c>
+  <Location /ds>
+    Allow from all
+      <IfModule mod_shib.c>
+        AuthType shibboleth
+        ShibRequestSetting requireSession false
+        require shibboleth
+      </IfModule>
+    </Location>
+  Alias /ds/idpselect_config.js /etc/shibboleth-ds/idpselect_config.js
+  Alias /ds/idpselect.js /etc/shibboleth-ds/idpselect.js
+  Alias /ds/idpselect.css /etc/shibboleth-ds/idpselect.css
+  Alias /ds/index.html /etc/shibboleth-ds/index.html
+  Alias /ds/<%= @logo_filename %> <%= @logo_path %>/<%= @logo_filename %>
+</IfModule>

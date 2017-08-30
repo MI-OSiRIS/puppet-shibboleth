@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <title><%= @ds_title %></title>
+            <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-5" />
+            <link rel="stylesheet" type="text/css" href="idpselect.css" />
+
+            <style type="text/css">
+                #idpSelectIdPEntryTile {
+                    margin-top: 10px;
+                }
+
+                #idpSelectIdPEntryTile a {
+                    margin-top: 20px;
+                }
+
+                #idpSelect {
+                    margin: 5px;
+                }
+
+                #toplogo {
+                    float: left;
+                    padding: 5px 20px 5px 5px;
+                }
+
+                h1 {
+                    font-size: 2em;
+                    color: darkcyan;
+                }
+
+                h2 {
+                    font-size: 1.5em;
+                    color: darkgray;
+                }
+
+                body {
+                    background-color: #FFFFFF;
+                    font-family : Geneva, Arial, Helvetica, sans-serif;
+                }
+
+                </style>
+                <% if @user_stylesheet -%>
+                <link rel="stylesheet" type="text/css" href="<%= @user_stylesheet %>" />
+            <% end -%>
+        </head>
+
+        <body>
+
+            <h1><img id='toplogo'  src="<%= @logo_filename %>"/><%= @ds_title %></h1>
+            <h2>Select your organization to login</h2>
+            <br style="clear: both;"/>
+            <div id="idpSelect"></div>
+            <script src="idpselect_config.js" type="text/javascript" language="javascript"></script>
+            <script src="idpselect.js" type="text/javascript" language="javascript"></script>
+
+            <noscript>
+            <p>Javascript is required to use this service.</p>
+            </noscript>
+        </body>
+    </html>

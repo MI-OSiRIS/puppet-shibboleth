@@ -16,14 +16,19 @@ class shibboleth::params {
 
   $admin              = $::apache::serveradmin
   $hostname           = $::fqdn
-  $logo_location      = '/shibboleth-sp/logo.jpg'
-  $style_sheet        = '/shibboleth-sp/main.css'
+  $logo_path          = '/usr/share/shibboleth'
+  $logo_filename      = 'logo.jpg'
+  $style_sheet        = '/usr/share/shibboleth/main.css'
   $conf_dir           = '/etc/shibboleth'
   $conf_file          = 'shibboleth2.xml'
   $sp_cert            = 'sp-cert.pem'
   $bin_dir            = '/usr/sbin'
   $discovery_protocol = 'SAMLDS'
   $manage_user        = false     # Shibboleth packages will generally create this user so default to not managing
+  $configure_apache   = false
+  $handlerSSL         = true
+  $consistent_address = true
+  $manage_repo        = false
 
   case $::osfamily {
     'Debian':{
