@@ -53,6 +53,7 @@ define shibboleth::metadata(
       "set MetadataProvider/MetadataFilter[1]/#attribute/maxValidityInterval ${metadata_filter_max_validity_interval}",
       'set MetadataProvider/MetadataFilter[2]/#attribute/type Signature',
       "set MetadataProvider/MetadataFilter[2]/#attribute/certificate ${cert_file}",
+      'set MetadataProvider/MetadataFilter[2]/#attribute/verifyBackup false',
     ],
     notify  => Service['httpd','shibd'],
     require => [Exec["get_${name}_metadata_cert"],Augeas["shib_${name}_create_metadata_provider"]],
