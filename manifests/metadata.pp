@@ -4,17 +4,29 @@ define shibboleth::metadata(
   $provider_uri,
   $cert_uri,
   $backing_file_dir         = $::shibboleth::conf_dir,
-  $backing_file_name        = inline_template("<%= @provider_uri.split('/').last  %>"),
+  $backing_file_name        = undef,
   $cert_dir                 = $::shibboleth::conf_dir,
-  $cert_file_name           = inline_template("<%= @cert_uri.split('/').last  %>"),
+  $cert_file_name           = undef,
   $provider_type            = 'XML',
   $legacy_org_names         = true,
   $provider_reload_interval = '7200',
   $metadata_filter_max_validity_interval  = '2419200'
 ){
 
-  $backing_file = "${backing_file_dir}/${backing_file_name}"
-  $cert_file    = "${cert_dir}/${cert_file_name}"
+  if ($backing_file_name == undef) {
+    $backing_fn = inline_template("<%= @provider_uri.split('/').last  %>")
+  } else {
+    $backing_fn = $backing_file_name
+  }
+
+  if ($cert_file_name == undef) {
+    $cert_fn = inline_template("<%= @cert_uri.split('/').last  %>")
+  } else {
+    $cert_fn = $cert_file_name
+  }
+
+  $backing_file = "${backing_file_dir}/${backing_fn}"
+  $cert_file    = "${cert_dir}/${cert_fn}"
 
   # Get the Metadata signing certificate
   exec{"get_${name}_metadata_cert":
