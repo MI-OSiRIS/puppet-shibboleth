@@ -40,7 +40,8 @@ class shibboleth::repo {
           baseurl   => "http://download.opensuse.org/repositories/security:/shibboleth/${reponame}/",
           gpgcheck  => 1,
           gpgkey    => "http://download.opensuse.org/repositories/security:/shibboleth/${reponame}/repodata/repomd.xml.key",
-          enabled   => 1
+          enabled   => 1,
+          skip_if_unavailable => 1
         }
       }
 
