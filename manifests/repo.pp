@@ -12,59 +12,45 @@
 # NOTE:  It is likely that the Suse related parts of this class do not work right.   
 #
 class shibboleth::repo {
-
   if $::shibboleth::manage_repo {
-
     case $::osfamily {
       'redhat': {
-        case $::operatingsystem {
-          'centos', 'scientific': {
-            $reponame = $::operatingsystemmajrelease ? {
-              '6'     => 'CentOS_CentOS-6',  # i don't know why this one is strange
-              default => "CentOS_$::operatingsystemmajrelease",
-            }
+        if ( versioncmp($facts['os']['release']['major'], '7') == 0 ) {
+          yumrepo { 'shibboleth': 
+            descr      => "Shibboleth (CentOS_7)",
+            name       => 'shibboleth',
+            type       => "rpm-md",
+            mirrorlist => "https://shibboleth.net/cgi-bin/mirrorlist.cgi/CentOS_7",
+            gpgcheck   => 1,
+            gpgkey     => [ "https://shibboleth.net/downloads/service-provider/RPMS/repomd.xml.key","https://shibboleth.net/downloads/service-provider/RPMS/cantor.repomd.xml.key" ] ,
+            enabled    => 1,
+            skip_if_unavailable => 1
           }
-
-          'redhat': {
-            $reponame = $::operatingsystemmajrelease ? {
-              /(5|6)/ =>  "RHEL_$::operatingsystemmajrelease",
-              default     => "CentOS_$::operatingsystemmajrelease",
-            }
+        } elsif ( versioncmp($facts['os']['release']['major'], '8') == 0 ) {
+          yumrepo { 'shibboleth': 
+            descr      => "Shibboleth (CentOS_8)",
+            name       => 'shibboleth',
+            type       => "rpm-md",
+            mirrorlist => "https://shibboleth.net/cgi-bin/mirrorlist.cgi/CentOS_8",
+            gpgcheck   => 1,
+            gpgkey     => [ "https://shibboleth.net/downloads/service-provider/RPMS/repomd.xml.key","https://shibboleth.net/downloads/service-provider/RPMS/cantor.repomd.xml.key" ] ,
+            enabled    => 1,
+            skip_if_unavailable => 1
           }
-            default: { fail('Your plattform is not supported to manage a repository.') }
-        }
-
-        yumrepo { 'security_shibboleth': 
-          descr     => "Shibboleth (${reponame})",
-          name      => 'security_shibboleth',
-          baseurl   => "http://download.opensuse.org/repositories/security:/shibboleth/${reponame}/",
-          gpgcheck  => 1,
-          gpgkey    => "http://download.opensuse.org/repositories/security:/shibboleth/${reponame}/repodata/repomd.xml.key",
-          enabled   => 1,
-          skip_if_unavailable => 1
-        }
-      }
-
-      'suse': {
-        $reponame = $::operatingsystem ? {  
-          'SLES' => "SLE_${::operatingsystemmajrelease}",
-          'OpenSuSE' => "openSUSE_${::operatingsystemmajrelease}" 
-        }
-            
-      # requires darin/zypprepo
-        zypprepo { 'security_shibboleth':
-          descr     => "Shibboleth (SLE_${::operatingsystemmajrelease})",
-          name      => 'security_shibboleth',
-          baseurl   => "http://download.opensuse.org/repositories/security:/shibboleth/SLE_${::operatingsystemmajrelease}/",
-          gpgkey    => 'http://download.opensuse.org/repositories/security:/shibboleth/SLE_${::operatingsystemmajrelease}//repodata/repomd.xml.key',
-          enabled   => 1,
-          gpgcheck  => 1,
+        } elsif ( versioncmp($facts['os']['release']['major'], '9') == 0 ) {
+          yumrepo { 'shibboleth': 
+            descr      => "Shibboleth (rockylinux9)",
+            name       => 'shibboleth',
+            type       => "rpm-md",
+            mirrorlist => "https://shibboleth.net/cgi-bin/mirrorlist.cgi/rockylinux9",
+            gpgcheck   => 1,
+            gpgkey     => [ "https://shibboleth.net/downloads/service-provider/RPMS/repomd.xml.key","https://shibboleth.net/downloads/service-provider/RPMS/cantor.repomd.xml.key" ] ,
+            enabled    => 1,
+            skip_if_unavailable => 1
+          }
         }
       }
       default: {  fail('Your plattform is not supported to manage a repository.')  }
     }      
   }
-
 }
-     
-    
