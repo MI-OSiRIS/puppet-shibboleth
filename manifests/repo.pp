@@ -19,7 +19,6 @@ class shibboleth::repo {
           yumrepo { 'shibboleth': 
             descr      => "Shibboleth (CentOS_7)",
             name       => 'shibboleth',
-            type       => "rpm-md",
             mirrorlist => "https://shibboleth.net/cgi-bin/mirrorlist.cgi/CentOS_7",
             gpgcheck   => 1,
             gpgkey     => [ "https://shibboleth.net/downloads/service-provider/RPMS/repomd.xml.key","https://shibboleth.net/downloads/service-provider/RPMS/cantor.repomd.xml.key" ] ,
@@ -30,7 +29,6 @@ class shibboleth::repo {
           yumrepo { 'shibboleth': 
             descr      => "Shibboleth (CentOS_8)",
             name       => 'shibboleth',
-            type       => "rpm-md",
             mirrorlist => "https://shibboleth.net/cgi-bin/mirrorlist.cgi/CentOS_8",
             gpgcheck   => 1,
             gpgkey     => [ "https://shibboleth.net/downloads/service-provider/RPMS/repomd.xml.key","https://shibboleth.net/downloads/service-provider/RPMS/cantor.repomd.xml.key" ] ,
@@ -41,7 +39,6 @@ class shibboleth::repo {
           yumrepo { 'shibboleth': 
             descr      => "Shibboleth (rockylinux9)",
             name       => 'shibboleth',
-            type       => "rpm-md",
             mirrorlist => "https://shibboleth.net/cgi-bin/mirrorlist.cgi/rockylinux9",
             gpgcheck   => 1,
             gpgkey     => [ "https://shibboleth.net/downloads/service-provider/RPMS/repomd.xml.key","https://shibboleth.net/downloads/service-provider/RPMS/cantor.repomd.xml.key" ] ,
