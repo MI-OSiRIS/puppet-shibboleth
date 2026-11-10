@@ -13,7 +13,7 @@
 #
 class shibboleth::repo {
   if $::shibboleth::manage_repo {
-    case $::osfamily {
+    case $facts['os']['family'] {
       'redhat': {
         if ( versioncmp($facts['os']['release']['major'], '7') == 0 ) {
           yumrepo { 'shibboleth': 
