@@ -15,7 +15,7 @@
 class shibboleth::params {
 
   $admin              = $::apache::serveradmin
-  $hostname           = $::fqdn
+  $hostname           = $facts['networking']['fqdn']
   $logo_path          = '/usr/share/shibboleth'
   $logo_filename      = 'logo.jpg'
   $style_sheet        = '/usr/share/shibboleth/main.css'
@@ -30,7 +30,7 @@ class shibboleth::params {
   $consistent_address = true
   $manage_repo        = false
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian':{
       $user  = '_shibd'
       $group = '_shibd'
@@ -44,7 +44,7 @@ class shibboleth::params {
       $group = 'shibd'
     }
     default:{
-      fail("The shibboleth Puppet module does not support ${::osfamily} family of operating systems")
+      fail("The shibboleth Puppet module does not support ${facts['os']['family']} family of operating systems")
     }
   }
 }
